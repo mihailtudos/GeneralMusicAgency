@@ -32,11 +32,11 @@ PreparedStatement prepStatement;
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         registration = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        user_name = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,8 +94,8 @@ PreparedStatement prepStatement;
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))))
+                            .addComponent(password)
+                            .addComponent(user_name, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,10 +105,10 @@ PreparedStatement prepStatement;
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -156,11 +156,36 @@ PreparedStatement prepStatement;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        String sql = "SELECT * FROM users WHERE user_name = ? AND password == ?";
+        String sql = "SELECT * FROM users WHERE user_name=? AND password=?";
         try{
-            
+            prepStatement = connection.prepareStatement(sql);
+            prepStatement.setString(1, user_name.getText());
+            String passText = new String(password.getPassword());
+            String hashedPass = Validation_and_Sanitization.checkPassword(passText, passText);
+            prepStatement.setString(2, hashedPass);
+            result = prepStatement.executeQuery();
+            if(result.next()){
+                result.close();
+                prepStatement.close();
+                connection.close();
+                setVisible(false);
+                Loading loading = new Loading();
+                loading.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "User Not Found");
+                user_name.setText("");
+                password.setText("");
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                result.close();
+                prepStatement.close();
+                connection.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -206,8 +231,8 @@ PreparedStatement prepStatement;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField password;
     private javax.swing.JButton registration;
+    private javax.swing.JTextField user_name;
     // End of variables declaration//GEN-END:variables
 }

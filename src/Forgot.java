@@ -1,4 +1,5 @@
 
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,17 +43,17 @@ PreparedStatement prepStatement;
         sec_code = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        searchUser = new javax.swing.JButton();
+        backToLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         user_name = new javax.swing.JTextField();
         userFound = new javax.swing.JLabel();
         resetForm = new javax.swing.JPanel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        conf_password = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        updatepassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,17 +65,17 @@ PreparedStatement prepStatement;
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Security code");
 
-        jButton2.setText("Search");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        searchUser.setText("Search");
+        searchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                searchUserActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backToLogin.setText("Back");
+        backToLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backToLoginActionPerformed(evt);
             }
         });
 
@@ -103,10 +104,10 @@ PreparedStatement prepStatement;
                             .addComponent(sec_code)
                             .addComponent(user_name, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 196, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addGap(0, 210, Short.MAX_VALUE)
+                        .addComponent(backToLogin)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton2)))
+                        .addComponent(searchUser)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,25 +129,28 @@ PreparedStatement prepStatement;
                     .addComponent(sec_code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(backToLogin)
+                    .addComponent(searchUser)))
         );
 
         resetForm.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reset password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
-        jPasswordField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField2.setText("jPasswordField2");
+        conf_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Confirm password");
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Password");
 
-        jButton3.setText("Save");
+        updatepassword.setText("Save");
+        updatepassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatepasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout resetFormLayout = new javax.swing.GroupLayout(resetForm);
         resetForm.setLayout(resetFormLayout);
@@ -157,15 +161,15 @@ PreparedStatement prepStatement;
                 .addGroup(resetFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(resetFormLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3))
+                        .addComponent(updatepassword))
                     .addGroup(resetFormLayout.createSequentialGroup()
                         .addGroup(resetFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(resetFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(conf_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         resetFormLayout.setVerticalGroup(
@@ -174,13 +178,13 @@ PreparedStatement prepStatement;
                 .addContainerGap()
                 .addGroup(resetFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(resetFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(conf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(updatepassword)
                 .addContainerGap())
         );
 
@@ -202,39 +206,85 @@ PreparedStatement prepStatement;
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(resetForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(480, 476));
+        setSize(new java.awt.Dimension(494, 573));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backToLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToLoginActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         Login sign_up = new Login();
         sign_up.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backToLoginActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
+        String sql = "SELECT * FROM users WHERE user_name = ? AND email = ? AND security_code = ?";
         try{
-            String sql = "SELECT * FROM users WHERE user_name = ? AND email = ? AND security_code = ?";
+            prepStatement = connection.prepareStatement(sql);
             prepStatement.setString(1, user_name.getText());
             prepStatement.setString(2, email.getText());
             prepStatement.setString(3, sec_code.getText());
-            prepStatement.execute();
-            while(result.next()){
-                JOptionPane.showMessageDialog(null, "User Found");
+            result = prepStatement.executeQuery();
+            if(result.next()){
                 resetForm.setVisible(true);
+                JOptionPane.showMessageDialog(null, "User Found. Please, fill up below form to reset your password!");
+                result.close();
+                prepStatement.close();
+            }else{
+                JOptionPane.showMessageDialog(null, "User Not Found. Try again!");
+                user_name.setText("");
+                email.setText("");
+                sec_code.setText("");
             }
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_searchUserActionPerformed
+
+    private void updatepasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatepasswordActionPerformed
+        // TODO add your handling code here:
+         String updateQuery = "UPDATE users SET password = ? WHERE user_name = ?";                
+                try{
+                    prepStatement = connection.prepareStatement(updateQuery);
+                    String passText = new String(password.getPassword());
+                    String confPassText = new String(conf_password.getPassword());
+                    if(Validation_and_Sanitization.checkPassword(passText, confPassText).equals("-1")){
+                        password.setText("");
+                        conf_password.setText("");
+                    }else{
+                        prepStatement.setString(1, Validation_and_Sanitization.checkPassword(passText, confPassText));
+                        prepStatement.setString(2, user_name.getText());
+                        int i = prepStatement.executeUpdate();
+                        
+                        if(i >0){
+                            JOptionPane.showMessageDialog(null, "User's password was updated.");
+                            result.close();
+                            prepStatement.close();
+                            connection.close();
+                            setVisible(false);
+                            Login login = new Login();
+                            login.setVisible(true);
+                        }else{
+                            
+                            password.setText("");
+                            conf_password.setText("");
+                            JOptionPane.showMessageDialog(null, "User Not Found. Try again!");
+                        }
+                    }
+                    
+                    prepStatement.setString(1, user_name.getText());
+                    prepStatement.setString(2, email.getText()); 
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+    }//GEN-LAST:event_updatepasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,20 +322,20 @@ PreparedStatement prepStatement;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backToLogin;
+    private javax.swing.JPasswordField conf_password;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JPasswordField password;
     private javax.swing.JPanel resetForm;
+    private javax.swing.JButton searchUser;
     private javax.swing.JTextField sec_code;
+    private javax.swing.JButton updatepassword;
     private javax.swing.JLabel userFound;
     private javax.swing.JTextField user_name;
     // End of variables declaration//GEN-END:variables
