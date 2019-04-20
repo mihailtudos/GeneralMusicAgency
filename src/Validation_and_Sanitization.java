@@ -2,6 +2,9 @@
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
@@ -15,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author mihai
  */
 public class Validation_and_Sanitization {
+
+
     public static String checkTextFormat(String text){
         if(text.isEmpty()){
             return "-1";
@@ -28,6 +33,7 @@ public class Validation_and_Sanitization {
             return "-1";
         }
     }
+    
     public static String checkPassword(String password, String conf_password){
         if(password.isEmpty() || conf_password.isEmpty() || !password.equals(conf_password)){
             JOptionPane.showMessageDialog(null, "Incorrect password entered");
@@ -58,7 +64,51 @@ public class Validation_and_Sanitization {
         }
     }
     
+    public static String checkEmail(String email){
+        Connection connection = DB_Connection.get_connection();
+        try{
+            ResultSet rs;
+            PreparedStatement ps;
     
+            String emailQuery = "SELECT * FROM users WHERE email=?";
+            ps = connection.prepareStatement(emailQuery);
+            ps.setString(1,email);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Email is taken");
+                return "-1";
+            }else{
+                return email;
+            }
+            }catch(Exception e){
+                return "-1";
+            // JOptionPane.showMessageDialog(null, e);
+            }
+    }
+    
+     public static String checkUserName(String userNmae){
+        Connection connection = DB_Connection.get_connection();
+        try{
+            ResultSet rsuser;
+            PreparedStatement psuser;
+    
+            String userNameQuery = "SELECT * FROM users WHERE user_name=?";
+            psuser = connection.prepareStatement(userNameQuery);
+            psuser.setString(1,userNmae);
+            rsuser = psuser.executeQuery();
+            
+            if(rsuser.next()){
+                JOptionPane.showMessageDialog(null, "User name is taken");
+                return "-1";
+            }else{
+                return userNmae;
+            }
+            }catch(Exception e){
+                return "-1";
+            // JOptionPane.showMessageDialog(null, e);
+            }
+    }
 }
 
 

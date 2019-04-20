@@ -570,20 +570,24 @@ PreparedStatement prepStatement;
                     prepStatement.setString(4, address_one.getText().toLowerCase());
                 }
                 prepStatement.setString(5, address_two.getText().toLowerCase());
-                 if(post_code.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Post code is required");
-                }else{
-                prepStatement.setString(6, post_code.getText().toUpperCase());
-                 }
-                 if(email.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Email is required");
-                }else{
-                    prepStatement.setString(7, email.getText().toLowerCase());
-                 }
                 if(town.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Post code is required");
                 }else{
-                    prepStatement.setString(8, town.getText());
+                    prepStatement.setString(6, town.getText());
+                }
+                 if(post_code.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Post code is required");
+                }else{
+                prepStatement.setString(7, post_code.getText().toUpperCase());
+                 }
+                if(email.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Email is required");
+                }else{
+                    if(Validation_and_Sanitization.checkEmail(email.getText()).equals("-1")){
+                        email.setText("");
+                    }else{
+                        prepStatement.setString(8, email.getText().toLowerCase());
+                    }
                 }
                  if(phone.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Phone is required");
@@ -593,7 +597,11 @@ PreparedStatement prepStatement;
                 if(user_name.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "User Name is required");
                 }else{ 
-                    prepStatement.setString(10, user_name.getText());
+                    if(Validation_and_Sanitization.checkEmail(user_name.getText()).equals("-1")){
+                        user_name.setText("");
+                    }else{
+                       prepStatement.setString(10, user_name.getText());
+                    }   
                 }
                 
                 String passText = new String(password.getPassword());
@@ -602,11 +610,10 @@ PreparedStatement prepStatement;
                     password.setText("");
                     conf_password.setText("");
                 }else{
-                    
                     prepStatement.setString(11, Validation_and_Sanitization.checkPassword(passText, confPassText));
                 }
-                if(user_name.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "User Name is required");
+                if(security_code.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Security code is required");
                 }else{
                 prepStatement.setString(12, security_code.getText());
                 }
