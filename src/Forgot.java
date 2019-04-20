@@ -265,9 +265,6 @@ PreparedStatement prepStatement;
                         
                         if(i >0){
                             JOptionPane.showMessageDialog(null, "User's password was updated.");
-                            result.close();
-                            prepStatement.close();
-                            connection.close();
                             setVisible(false);
                             Login login = new Login();
                             login.setVisible(true);

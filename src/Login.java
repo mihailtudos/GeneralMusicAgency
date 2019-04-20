@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 public class Login extends javax.swing.JFrame {
@@ -170,6 +171,7 @@ PreparedStatement prepStatement;
                 connection.close();
                 setVisible(false);
                 Loading loading = new Loading();
+                loading.setUpLoad();
                 loading.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "User Not Found");
@@ -203,6 +205,7 @@ PreparedStatement prepStatement;
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+                     //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
                 }
             }
         } catch (ClassNotFoundException ex) {
