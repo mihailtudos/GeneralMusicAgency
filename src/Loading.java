@@ -15,11 +15,18 @@ import javax.swing.JOptionPane;
 public class Loading extends javax.swing.JFrame implements Runnable {
 Connection connection;
 int i = 0;
+String  userLevel, userName;
 Thread thread;
 
-    /**
-     * Creates new form Loading
-     */
+    public Loading(String userLevel, String userName){
+        super("Loading");
+        this.userLevel = userLevel;
+        this.userName = userName;
+        initComponents();
+        userLevelLoading.setText("Loading your " + this.userLevel + " account...");
+        thread = new Thread((Runnable)this);
+    }
+    
     public Loading() {
         super("Loading");
         initComponents();
@@ -40,10 +47,20 @@ Thread thread;
                 if(v < max){
                     progressBar.setValue(progressBar.getValue() + 1);
                 } else{
-                    setVisible(false);
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.setVisible(true);
-                } Thread.sleep(50);
+                    if(userLevel.equals("admin")){
+                        setVisible(false);
+                        AdminDashboard adminDashboard = new AdminDashboard();
+                        adminDashboard.setVisible(true);
+                    } else if(userLevel.equals("user")){
+                        setVisible(false);
+                        Dashboard dashboard = new Dashboard(this.userName);
+                        dashboard.setVisible(true);                        
+                    } else if(userLevel.equals("corporation")){
+                        setVisible(false);
+                        Dashboard dashboard = new Dashboard(this.userName);
+                        dashboard.setVisible(true);                        
+                    } 
+                } Thread.sleep(20);
             }
         } catch(Exception e){
         JOptionPane.showMessageDialog(null, e);
@@ -61,7 +78,7 @@ Thread thread;
 
         jLabel1 = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
-        jLabel2 = new javax.swing.JLabel();
+        userLevelLoading = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -71,7 +88,7 @@ Thread thread;
 
         progressBar.setStringPainted(true);
 
-        jLabel2.setText("Please wait...");
+        userLevelLoading.setText("Please wait...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,14 +98,12 @@ Thread thread;
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(userLevelLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(35, 35, 35))))
                 .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +113,7 @@ Thread thread;
                 .addGap(67, 67, 67)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(userLevelLoading)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
@@ -143,7 +158,7 @@ Thread thread;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLabel userLevelLoading;
     // End of variables declaration//GEN-END:variables
 }

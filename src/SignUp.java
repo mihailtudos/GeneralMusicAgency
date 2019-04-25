@@ -621,26 +621,81 @@ PreparedStatement prepStatement;
                 prepStatement.setString(14, "NULL");
                 prepStatement.setString(15, "NULL");
                 prepStatement.setString(16, "NULL");}
+                
             else {
-                String sql = "INSERT INTO `users` (`title`, `first_name`, `second_name`, `address_1`, `address_2`, `town`, `post_code`, `email`, `phone_no`, `user_name`, `password`, `security_code`, `org_type`, `account_no`, `account_postcode`, `org_name`)"
-                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                String sql = "INSERT INTO `users` (`title`, `first_name`, `second_name`, `address_1`, `address_2`, `town`, `post_code`, `email`, `phone_no`, `user_name`, `password`, `security_code`, `org_type`, `account_no`, `account_postcode`, `org_name`, `user_level`)"
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                 prepStatement = connection.prepareStatement(sql);
                 prepStatement.setString(1, (String) title.getSelectedItem());   
-                prepStatement.setString(2, firstName.getText());
-                prepStatement.setString(3, secondName.getText());
-                prepStatement.setString(4, address_one.getText());
-                prepStatement.setString(5, address_two.getText());
-                prepStatement.setString(6, post_code.getText().toUpperCase());
-                prepStatement.setString(7, email.getText().toLowerCase());
-                prepStatement.setString(8, town.getText());
-                prepStatement.setString(9, phone.getText());
-                prepStatement.setString(10, user_name.getText());
-                prepStatement.setString(11, password.getPassword().toString());
+                //prepStatement.setString(2, firstName.getText());
+                if(Validation_and_Sanitization.checkTextFormat(firstName.getText()) == "-1"){
+                    firstName.setText("");
+                }
+                else if(Validation_and_Sanitization.checkTextFormat(secondName.getText()) == "-1"){
+                    secondName.setText("");
+                }
+                else{
+                    prepStatement.setString(2, Validation_and_Sanitization.checkTextFormat(firstName.getText()));
+                    prepStatement.setString(3, Validation_and_Sanitization.checkTextFormat(secondName.getText()));
+                }
+                if(address_one.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Address is required");
+                }else{
+                    prepStatement.setString(4, address_one.getText().toLowerCase());
+                }
+                prepStatement.setString(5, address_two.getText().toLowerCase());
+                if(town.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Post code is required");
+                }else{
+                    prepStatement.setString(6, town.getText());
+                }
+                 if(post_code.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Post code is required");
+                }else{
+                prepStatement.setString(7, post_code.getText().toUpperCase());
+                 }
+                if(email.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Email is required");
+                }else{
+                    if(Validation_and_Sanitization.checkEmail(email.getText()).equals("-1")){
+                        email.setText("");
+                    }else{
+                        prepStatement.setString(8, email.getText().toLowerCase());
+                    }
+                }
+                 if(phone.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Phone is required");
+                }else{
+                    prepStatement.setString(9, phone.getText());
+                }
+                if(user_name.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "User Name is required");
+                }else{ 
+                    if(Validation_and_Sanitization.checkEmail(user_name.getText()).equals("-1")){
+                        user_name.setText("");
+                    }else{
+                       prepStatement.setString(10, user_name.getText());
+                    }   
+                }
+                
+                String passText = new String(password.getPassword());
+                String confPassText = new String(conf_password.getPassword());
+                if(Validation_and_Sanitization.checkPassword(passText, confPassText) == "-1"){
+                    password.setText("");
+                    conf_password.setText("");
+                }else{
+                    prepStatement.setString(11, Validation_and_Sanitization.checkPassword(passText, confPassText));
+                }
+                if(security_code.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Security code is required");
+                }else{
                 prepStatement.setString(12, security_code.getText());
+                }
                 prepStatement.setString(13, (String) org_type.getSelectedItem());
                 prepStatement.setString(14, account_no.getText());
                 prepStatement.setString(15, account_postcode.getText());
                 prepStatement.setString(16, org_name.getText());
+                prepStatement.setString(17, "corporation");
             }
             prepStatement.execute(); 
             JOptionPane.showMessageDialog(null, "New account created");

@@ -158,21 +158,22 @@ PreparedStatement prepStatement;
         // TODO add your handling code here:
         
         String sql = "SELECT * FROM users WHERE user_name=? AND password=?";
+        String userName = user_name.getText();
         try{
             prepStatement = connection.prepareStatement(sql);
-            prepStatement.setString(1, user_name.getText());
+            prepStatement.setString(1, userName);
             String passText = new String(password.getPassword());
             String hashedPass = Validation_and_Sanitization.checkPassword(passText, passText);
             prepStatement.setString(2, hashedPass);
             result = prepStatement.executeQuery();
             if(result.next()){
+                setVisible(false);
+                Loading loading = new Loading(result.getString("user_level"), userName);
+                loading.setUpLoad();
+                loading.setVisible(true);
                 result.close();
                 prepStatement.close();
                 connection.close();
-                setVisible(false);
-                Loading loading = new Loading();
-                loading.setUpLoad();
-                loading.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "User Not Found");
                 user_name.setText("");
