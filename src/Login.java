@@ -171,9 +171,6 @@ PreparedStatement prepStatement;
                 Loading loading = new Loading(result.getString("user_level"), userName);
                 loading.setUpLoad();
                 loading.setVisible(true);
-                result.close();
-                prepStatement.close();
-                connection.close();
             }else{
                 JOptionPane.showMessageDialog(null, "User Not Found");
                 user_name.setText("");

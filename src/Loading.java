@@ -51,14 +51,14 @@ Thread thread;
                         setVisible(false);
                         AdminDashboard adminDashboard = new AdminDashboard();
                         adminDashboard.setVisible(true);
-                    } else if(userLevel.equals("user")){
+                    } else if(userLevel.equals("user") || userLevel.equals("corporation")){
                         setVisible(false);
                         Dashboard dashboard = new Dashboard(this.userName);
                         dashboard.setVisible(true);                        
-                    } else if(userLevel.equals("corporation")){
+                    } else if(userLevel.equals("organiser")){
                         setVisible(false);
-                        Dashboard dashboard = new Dashboard(this.userName);
-                        dashboard.setVisible(true);                        
+                        OrganiserDashboard organiserDashboard = new OrganiserDashboard(this.userName);
+                        organiserDashboard.setVisible(true);                        
                     } 
                 } Thread.sleep(20);
             }
