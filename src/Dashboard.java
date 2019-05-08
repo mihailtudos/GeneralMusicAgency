@@ -68,13 +68,13 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Partners", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\trivago_1x.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/trivago_1x.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\appleitunes-logo.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/appleitunes-logo.png"))); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\microsoft-logo.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/microsoft-logo.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\amazon-logopng.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/amazon-logopng.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,9 +85,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(53, 53, 53)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel8)
                 .addContainerGap())
         );
@@ -110,9 +110,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("LCDMono2", 0, 48)); // NOI18N
         jLabel1.setText("Music Agency");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\global.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/global.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\musicLogo.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/musicLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,7 +150,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\user profile.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/user profile.png"))); // NOI18N
 
         welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         welcome.setText("Welcome");
@@ -187,7 +187,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bookings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\booking.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/booking.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -210,7 +210,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\calendar.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/calendar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -228,7 +228,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payments", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\calendar (1).png ")); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/calendar (1).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -251,7 +251,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Book-Now-Icon.gif"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Book-Now-Icon.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);

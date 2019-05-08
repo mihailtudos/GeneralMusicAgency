@@ -50,7 +50,7 @@ PreparedStatement prepStatement;
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\user.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/user.png"))); // NOI18N
 
         registration.setText("Sign up");
         registration.addActionListener(new java.awt.event.ActionListener() {

@@ -193,14 +193,14 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\global.png"/>
+              <Image iconType="3" name="/imgs/global.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\musicLogo.png"/>
+              <Image iconType="3" name="/imgs/musicLogo.png"/>
             </Property>
           </Properties>
         </Component>
@@ -241,7 +241,7 @@
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\accontspng.png"/>
+              <Image iconType="3" name="/imgs/accontspng.png"/>
             </Property>
           </Properties>
           <Events>
@@ -288,7 +288,7 @@
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\adminCalendar.png"/>
+              <Image iconType="3" name="/imgs/adminCalendar.png"/>
             </Property>
           </Properties>
         </Component>
@@ -332,7 +332,7 @@
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\make booking.png"/>
+              <Image iconType="3" name="/imgs/make booking.png"/>
             </Property>
           </Properties>
         </Component>
@@ -376,7 +376,7 @@
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\money-transfer.png"/>
+              <Image iconType="3" name="/imgs/money-transfer.png"/>
             </Property>
           </Properties>
         </Component>

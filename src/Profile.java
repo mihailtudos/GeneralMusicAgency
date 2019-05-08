@@ -108,9 +108,9 @@ PreparedStatement prepStatement, updateStatement, securityStatement, orgStatemen
         jLabel1.setFont(new java.awt.Font("LCDMono2", 0, 48)); // NOI18N
         jLabel1.setText("Music Agency");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\global.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/global.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\musicLogo.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/musicLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -140,23 +140,13 @@ PreparedStatement prepStatement, updateStatement, securityStatement, orgStatemen
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Your profile", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(51, 51, 51))); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\user profile.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/user profile.png"))); // NOI18N
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\location.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/location.png"))); // NOI18N
 
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\mihai\\OneDrive\\Documents\\NetBeansProjects\\GlobalMusicAgency\\img\\unread mail.png")); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/unread mail.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("file:/C:/Users/mihai/OneDrive/Documents/NetBeansProjects/GlobalMusicAgency/img/download (1).png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/download (1).png"))); // NOI18N
 
         address.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         address.setText("location");
@@ -593,11 +583,11 @@ PreparedStatement prepStatement, updateStatement, securityStatement, orgStatemen
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

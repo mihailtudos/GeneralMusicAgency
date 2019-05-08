@@ -91,12 +91,13 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jTabbedPane1" min="-2" pref="903" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane1" min="-2" pref="903" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -195,14 +196,14 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\global.png"/>
+              <Image iconType="3" name="/imgs/global.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\musicLogo.png"/>
+              <Image iconType="3" name="/imgs/musicLogo.png"/>
             </Property>
           </Properties>
         </Component>
@@ -297,28 +298,28 @@
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\user profile.png"/>
+              <Image iconType="3" name="/imgs/user profile.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\location.png"/>
+              <Image iconType="3" name="/imgs/location.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mihai\OneDrive\Documents\NetBeansProjects\GlobalMusicAgency\img\unread mail.png"/>
+              <Image iconType="3" name="/imgs/unread mail.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="1" name="file:/C:/Users/mihai/OneDrive/Documents/NetBeansProjects/GlobalMusicAgency/img/download (1).png"/>
+              <Image iconType="3" name="/imgs/download (1).png"/>
             </Property>
           </Properties>
         </Component>
