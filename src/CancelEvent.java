@@ -20,12 +20,12 @@ public class CancelEvent extends javax.swing.JFrame {
     String userName, selectedEventID;
     Connection connection;
     ResultSet result;
-    PreparedStatement selectEventToBeCanceled, featchEvents;
+    PreparedStatement selectEventToBeCanceled, featchEvents, cancelPerformance;
     /**
      * Creates new form Dashboard
      */
    public CancelEvent(String userName){
-        super("Dashboard");
+        super("Edit Event");
         this.userName = userName;
         initComponents();
         selectionPanel.setVisible(false);
@@ -34,6 +34,7 @@ public class CancelEvent extends javax.swing.JFrame {
     }
     
     public CancelEvent() {
+        super("Edit Event");
         initComponents();
         selectionPanel.setVisible(false);
         connection = DB_Connection.get_connection();
@@ -42,9 +43,12 @@ public class CancelEvent extends javax.swing.JFrame {
     
     
     private void fillEvents(){
-        String getEventsSQL = "Select title FROM events;";
+        String getEventsSQL = "SELECT events.title  FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
             featchEvents = connection.prepareStatement(getEventsSQL);
+            Date date = new Date();
+            String modifiedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            featchEvents.setString(1, modifiedDate);
             result = featchEvents.executeQuery();
             while(result.next()){
                 selectedEvent.addItem(result.getString("title"));
@@ -56,10 +60,13 @@ public class CancelEvent extends javax.swing.JFrame {
     
     private void fillEventDates(){
         
-        String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =?;";
+        String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date >?";
         try{
             featchEvents = connection.prepareStatement(getEventsSQL);
             featchEvents.setString(1, selectedEvent.getSelectedItem().toString());
+            Date date = new Date();
+            String modifiedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            featchEvents.setString(2, modifiedDate);
             result = featchEvents.executeQuery();
             while(result.next()){
                 selectedEventDate.addItem(result.getString("date"));
@@ -363,6 +370,23 @@ public class CancelEvent extends javax.swing.JFrame {
 
     private void cancelEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEventActionPerformed
         // TODO add your handling code here:
+        String cancelEventSQL = "DELETE performances FROM performances INNER JOIN events ON performances.event=events.id WHERE events.title = ? AND performances.date =?";
+        try{
+            cancelPerformance = connection.prepareStatement(cancelEventSQL);
+            cancelPerformance.setString(1, selectedEvent.getSelectedItem().toString());
+            cancelPerformance.setString(2, selectedEventDate.getSelectedItem().toString());
+            boolean canceled = cancelPerformance.execute();
+            if (!canceled){
+                JOptionPane.showMessageDialog(null, "Event canceled"); 
+                setVisible(false);
+                CancelEvent cancelEvent = new CancelEvent(userName);
+                cancelEvent.setVisible(true);
+            } else{
+                JOptionPane.showMessageDialog(null, "Something went wrong please try again later");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
         
     }//GEN-LAST:event_cancelEventActionPerformed
 

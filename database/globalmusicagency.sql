@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2019 at 12:53 AM
+-- Generation Time: May 08, 2019 at 10:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -86,6 +86,30 @@ INSERT INTO `bands` (`id`, `name`, `bio`, `town`, `facebook`, `instagram`, `webs
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `performanceEvent` int(11) NOT NULL,
+  `number_of_class_1st_ticket` int(11) NOT NULL,
+  `number_of_class_2nd_ticket` int(11) NOT NULL,
+  `number_of_class_Org_ticket` int(11) NOT NULL,
+  `total` double NOT NULL,
+  `booking_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) VALUES
+(1, 12, 8, 1, 1, 2, 34, '2019-05-24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -122,16 +146,11 @@ CREATE TABLE `festival_members` (
 --
 
 INSERT INTO `festival_members` (`id`, `performance`, `band`) VALUES
-(1, 5, 2),
-(2, 5, 5),
-(8, 5, 2),
-(9, 7, 9),
-(11, 5, 9),
-(12, 7, 6),
 (13, 8, 5),
 (14, 8, 1),
-(15, 5, 1),
-(16, 8, 1);
+(16, 9, 1),
+(17, 9, 3),
+(18, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -153,9 +172,8 @@ CREATE TABLE `performances` (
 --
 
 INSERT INTO `performances` (`id`, `event`, `date`, `first_class_ticket_price`, `second_class_ticket_price`, `corporate_ticket_price`) VALUES
-(5, 1, '2019-05-18', 33, 34, 32),
-(7, 8, '2019-05-16', 32323, 32, 32),
-(8, 1, '2019-05-10', 22, 22, 11);
+(8, 1, '2019-05-10', 22, 22, 11),
+(9, 1, '2019-05-31', 12, 32, 23);
 
 -- --------------------------------------------------------
 
@@ -217,6 +235,14 @@ ALTER TABLE `bands`
   ADD KEY `agent` (`agent`);
 
 --
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event` (`performanceEvent`),
+  ADD KEY `user` (`user`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -260,6 +286,12 @@ ALTER TABLE `bands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -269,13 +301,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `festival_members`
 --
 ALTER TABLE `festival_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `performances`
 --
 ALTER TABLE `performances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -292,6 +324,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `bands`
   ADD CONSTRAINT `band_agent` FOREIGN KEY (`agent`) REFERENCES `agents` (`id`);
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `eventPrform` FOREIGN KEY (`performanceEvent`) REFERENCES `performances` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `festival_members`
