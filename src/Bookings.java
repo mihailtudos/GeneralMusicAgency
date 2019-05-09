@@ -55,7 +55,7 @@ public class Bookings extends javax.swing.JFrame {
     }
      
      private void fillEvents(){
-        String getEventsSQL = "SELECT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
+        String getEventsSQL = "SELECT DISTINCT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
             featchEvents = connection.prepareStatement(getEventsSQL);
             String pattern = "yyyy-MM-dd";
@@ -254,6 +254,7 @@ public class Bookings extends javax.swing.JFrame {
         performanceID.setText("  ");
         performanceID.setEnabled(false);
 
+        firstClassTicketsNumber.setText("0");
         firstClassTicketsNumber.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 firstClassTicketsNumberMouseMoved(evt);
@@ -268,6 +269,7 @@ public class Bookings extends javax.swing.JFrame {
             }
         });
 
+        secondClassTicketNumbers.setText("0");
         secondClassTicketNumbers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 secondClassTicketNumbersActionPerformed(evt);
@@ -282,6 +284,7 @@ public class Bookings extends javax.swing.JFrame {
             }
         });
 
+        orgTicketNumbers.setText("0");
         orgTicketNumbers.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 orgTicketNumbersKeyReleased(evt);
@@ -460,35 +463,31 @@ public class Bookings extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(jLabel4)
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(selectedEventDate, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SelectDate)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(eventDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel4)
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectedEventDate, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SelectDate)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(eventDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(655, 655, 655)
-                                .addComponent(backToDashboard)
-                                .addContainerGap())
+                                .addComponent(backToDashboard))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eventToLookAt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(selectEvent)
-                                .addContainerGap())))))
+                                .addComponent(selectEvent)))))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -549,6 +548,7 @@ public class Bookings extends javax.swing.JFrame {
             featchEventDetails.setString(2, eventToLookAt.getSelectedItem().toString());
             result = featchEventDetails.executeQuery();
             while(result.next()){
+                performanceID.setVisible(false);
                 performanceID.setText(result.getString("id"));
                 title.setText(result.getString("title"));
                 location.setText(result.getString("venue"));
@@ -560,7 +560,6 @@ public class Bookings extends javax.swing.JFrame {
                 firstClassTicket.setText("£" + firstClassTicketPrice + ".00");
                 secondClassTicket.setText("£" + secondClassTicketPrice + ".00");
                 orgTicket.setText("£" + orgTicketPrice + ".00");
-                performanceID.setVisible(false);
                 setBands();
             }
             
@@ -607,11 +606,14 @@ public class Bookings extends javax.swing.JFrame {
     
     private void backToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToDashboardActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        Dashboard dashboard = new Dashboard(userName);
-        dashboard.setVisible(true);
+        backToDashboard();
     }//GEN-LAST:event_backToDashboardActionPerformed
 
+    public void backToDashboard(){
+        this.setVisible(false);
+        Dashboard dashboard = new Dashboard(userName);
+        dashboard.setVisible(true);
+    }
     private void createBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBookingActionPerformed
         // TODO add your handling code here:
         String createBookingSQL = "INSERT INTO `bookings` ( `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) "
@@ -619,12 +621,25 @@ public class Bookings extends javax.swing.JFrame {
         try{
             insertBooking = connection.prepareStatement(createBookingSQL);
             insertBooking.setString(1, userID);
-            insertBooking.setString(2, userID);
-            insertBooking.setString(3, userID);
-            insertBooking.setString(4, userID);
-            insertBooking.setString(5, userID);
-            insertBooking.setString(6, userID);
-            insertBooking.setString(7, userID);
+            insertBooking.setString(2, performanceID.getText());
+            insertBooking.setString(3, firstClassTicketsNumber.getText());
+            insertBooking.setString(4, secondClassTicketNumbers.getText());
+            insertBooking.setString(5, orgTicketNumbers.getText());
+            insertBooking.setString(6, totalPriceCalculated.getText().substring(1));
+            Date date = new Date();
+            String modifiedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            insertBooking.setString(7, modifiedDate);
+            
+            boolean inserted = insertBooking.execute();
+            
+            if(!inserted){
+                JOptionPane.showMessageDialog(null, "Event booked");
+                 backToDashboard();
+            }else{
+                JOptionPane.showMessageDialog(null, "Something went wrong, try again later");
+                backToDashboard();
+            }
+            
         }catch (Exception e){
            JOptionPane.showMessageDialog(null, e); 
         }

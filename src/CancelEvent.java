@@ -43,7 +43,7 @@ public class CancelEvent extends javax.swing.JFrame {
     
     
     private void fillEvents(){
-        String getEventsSQL = "SELECT events.title  FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
+        String getEventsSQL = "SELECT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
             featchEvents = connection.prepareStatement(getEventsSQL);
             Date date = new Date();
