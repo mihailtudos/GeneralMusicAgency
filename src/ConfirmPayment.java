@@ -224,12 +224,18 @@ public class ConfirmPayment extends javax.swing.JFrame {
 
     public ArrayList<Booking>bookingsList() {
         ArrayList<Booking>bookingsList = new ArrayList<>();
-        String retrievBookingsData = "SELECT users.user_name, events.title, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date FROM bookings " +
-                                    "INNER JOIN events ON bookings.performanceEvent = events.id " +
-                                    "INNER JOIN users ON bookings.user = users.id WHERE users.user_name = ?";
+        String retrievBookingsData = "SELECT bookings.id, events.title, users.user_name, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date, bookings.confirmed\n" +
+            "FROM bookings\n" +
+            "INNER JOIN users ON bookings.user = users.id \n" +
+            "INNER JOIN performances ON bookings.performanceEvent = performances.id \n" +
+            "INNER JOIN events on performances.event = events.id WHERE users.user_name = ?";
         if(userName.equals("admin")){
-            retrievBookingsData = "SELECT bookings.id, users.user_name, events.title, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date, bookings.confirmed FROM bookings INNER JOIN events ON bookings.performanceEvent = events.id INNER JOIN users ON bookings.user = users.id";
-        }
+            retrievBookingsData = "SELECT bookings.id, events.title, users.user_name, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date, bookings.confirmed\n" +
+                "FROM bookings\n" +
+                "INNER JOIN users ON bookings.user = users.id \n" +
+                "INNER JOIN performances ON bookings.performanceEvent = performances.id \n" +
+                "INNER JOIN events on performances.event = events.id";
+                    }
         
                 
         try{
