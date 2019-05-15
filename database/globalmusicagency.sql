@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2019 at 10:34 PM
+-- Generation Time: May 15, 2019 at 09:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -95,17 +95,25 @@ CREATE TABLE `bookings` (
   `performanceEvent` int(11) NOT NULL,
   `number_of_class_1st_ticket` int(11) NOT NULL,
   `number_of_class_2nd_ticket` int(11) NOT NULL,
-  `number_of_class_Org_ticket` int(11) NOT NULL,
+  `number_of_class_Org_ticket` int(11) DEFAULT NULL,
   `total` double NOT NULL,
-  `booking_date` date NOT NULL
+  `booking_date` date NOT NULL,
+  `confirmed` varchar(48) DEFAULT 'Not confirmed'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) VALUES
-(1, 12, 8, 1, 1, 2, 34, '2019-05-24');
+INSERT INTO `bookings` (`id`, `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`, `confirmed`) VALUES
+(1, 12, 9, 1, 1, 2, 34, '2019-05-24', NULL),
+(2, 31, 8, 1, 2, 0, 0, '2019-05-09', NULL),
+(3, 5, 8, 3, 2, 0, 55, '2019-05-09', NULL),
+(4, 5, 10, 0, 4, 0, 100, '2019-05-09', NULL),
+(5, 5, 8, 0, 4, 0, 0, '2019-05-09', NULL),
+(6, 5, 8, 2, 3, 0, 50, '2019-05-09', 'Confirmed'),
+(7, 12, 8, 2, 4, NULL, 145, '2019-05-15', 'Confirmed'),
+(8, 34, 8, 12, 12, 1, 43, '2019-05-15', 'Confirmed');
 
 -- --------------------------------------------------------
 
@@ -125,8 +133,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `full_description`, `venue`) VALUES
-(1, 'PORT FAIRY FOLK FESTIVAL', 'So-called because it takes place in the artsy little town of Port Fairy, a stop on the stunning Great Ocean Road, this four-day folk-music fest combines delightful scenery with hundreds of acts ranging across roots, Celtic, folk, country, bluegrass, blues, jazz, rock, crossover and world music, as well as children\'s entertainment, workshops and fringe acts.', 'Hyde Park Corner'),
-(7, 'toan', 'sad', 'sda'),
+(1, 'PORT FAIRY FOLK FESTIVAL', 'So-called because it takes place in the artsy little town of Port Fairy, a stop on the stunning Great Ocean Road, this four-day folk-music fest combines delightful scenery with hundreds of acts ranging across roots, Celtic, folk, country, bluegrass, blues, jazz, rock, crossover and world music, as well as children\'s entertainment, workshops and fringe acts.', 'Hyde Park Corner North'),
+(7, 'toan', 'este un conert', 'moldova'),
 (8, 'Vin', 'dsa sad LONDON', 'London');
 
 -- --------------------------------------------------------
@@ -150,7 +158,8 @@ INSERT INTO `festival_members` (`id`, `performance`, `band`) VALUES
 (14, 8, 1),
 (16, 9, 1),
 (17, 9, 3),
-(18, 9, 4);
+(18, 9, 4),
+(19, 9, 5);
 
 -- --------------------------------------------------------
 
@@ -172,8 +181,9 @@ CREATE TABLE `performances` (
 --
 
 INSERT INTO `performances` (`id`, `event`, `date`, `first_class_ticket_price`, `second_class_ticket_price`, `corporate_ticket_price`) VALUES
-(8, 1, '2019-05-10', 22, 22, 11),
-(9, 1, '2019-05-31', 12, 32, 23);
+(8, 1, '2019-05-10', 10, 9, 11),
+(9, 7, '2019-05-31', 12, 32, 23),
+(10, 8, '2019-05-17', 10, 12, 13);
 
 -- --------------------------------------------------------
 
@@ -211,10 +221,12 @@ INSERT INTO `users` (`id`, `title`, `first_name`, `second_name`, `address_1`, `a
 (5, 'Mr.', 'Mihail', 'Tudos', '31', '21', '13', '1111', '1', '1', 'd', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'user'),
 (6, 'Mr.', 'Mihail', 'Tudos', '346 Luton rd', '', 'LU54LG', 'LU6 1BE\r\n\r\n', 'mihairmcr7@gmail.com', '07492313213', 'organiser', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1234, NULL, NULL, NULL, NULL, 'organiser'),
 (12, 'Mr.', '321', '321', '321', '31', '321', '321', '321', '321', '321', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 321, 'NULL', 'NULL', 'NULL', 'NULL', 'admin'),
-(31, 'Mr.', 'D', 'Dd', '31', '21', '13', '1111', '1', '1', 'd', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'admin'),
+(31, 'Mr.', 'D', 'Dd', '31', '21', '13', '1111', '1', '1', 'admin', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'admin'),
 (32, 'Mr.', 'D', 'D', 'd', 'd', 'd', 'D', 'sada', 'd', 'das', '18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4', 1, 'NULL', 'NULL', 'NULL', 'NULL', 'admin'),
 (33, 'Mr.', 'Sebastian', 'Smith', 'd', 'd', 'd', 'D', 'ddddd', 'd', 'org', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1214, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation'),
-(34, 'Mr.', 'Mihail', 'Triboi', 'pacii 11 b', '', 'Nisporeni', 'LU51BF', '1', '0986786', '1', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation');
+(34, 'Mr.', 'Mihail', 'Triboi', 'pacii 11 b', '', 'Nisporeni', 'LU51BF', '1', '0986786', '1', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation'),
+(35, 'Mr.', 'Carolyn', 'Harris', '1808 ingram road ', '', 'Bennett', 'NC 27208', 'carolyntharris@rhyta.com ', '336-581-4008', 'carol_harr', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'NULL', 'NULL', 'NULL', 'NULL', 'user'),
+(36, 'Mr.', 'Josh', 'Odenis', '64 long street ', '', 'MILLCOMBE', 'TQ9 9GZ', 'joshuaodonnell@teleworm.us ', '077 6446 0951 ', 'joshua_od', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '668703', 'TQ9 9GZ', 'ModelingSecrets', 'corporation');
 
 --
 -- Indexes for dumped tables
@@ -246,7 +258,8 @@ ALTER TABLE `bookings`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`);
 
 --
 -- Indexes for table `festival_members`
@@ -267,7 +280,8 @@ ALTER TABLE `performances`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -289,7 +303,7 @@ ALTER TABLE `bands`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -301,19 +315,19 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `festival_members`
 --
 ALTER TABLE `festival_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `performances`
 --
 ALTER TABLE `performances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -343,7 +357,7 @@ ALTER TABLE `festival_members`
 -- Constraints for table `performances`
 --
 ALTER TABLE `performances`
-  ADD CONSTRAINT `event` FOREIGN KEY (`event`) REFERENCES `events` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `event` FOREIGN KEY (`event`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
