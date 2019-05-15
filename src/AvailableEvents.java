@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author mihai
  */
 public class AvailableEvents extends javax.swing.JFrame {
-    String userName;
+    String userName = "";
     Connection connection;
     ResultSet result;
     PreparedStatement featchEvents, featchEventDetails, featchEventBands;
@@ -440,9 +440,16 @@ public class AvailableEvents extends javax.swing.JFrame {
     }
     private void backToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToDashboardActionPerformed
         // TODO add your handling code here:
+        if(userName.equals("")){
+            this.setVisible(false);
+            AdminDashboard adminDash = new AdminDashboard();
+            adminDash.setVisible(true);
+        }else {
         setVisible(false);
         Dashboard dashboard = new Dashboard(userName);
         dashboard.setVisible(true);
+        }
+        
     }//GEN-LAST:event_backToDashboardActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

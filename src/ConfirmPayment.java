@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mihai
  */
-public class ViewBookings extends javax.swing.JFrame {
+public class ConfirmPayment extends javax.swing.JFrame {
     String userName;
     Connection connection;
     ResultSet result;
@@ -25,7 +25,7 @@ public class ViewBookings extends javax.swing.JFrame {
     
    
     
-   public ViewBookings(String userName){
+   public ConfirmPayment(String userName){
         super("View Bookings");
         this.userName = userName;
         initComponents();
@@ -33,7 +33,7 @@ public class ViewBookings extends javax.swing.JFrame {
         show_bookings();
     }
     
-     public ViewBookings() {
+     public ConfirmPayment() {
         super("View Bookings");
         initComponents();
         connection = DB_Connection.get_connection();
@@ -107,11 +107,11 @@ public class ViewBookings extends javax.swing.JFrame {
 
             },
             new String [] {
-                "User name", "Event title", "1st class tickets", "2nd class ticket", "Corport ticket", "Total price", "Booking date"
+                "User name", "Event title", "1st class tickets", "2nd class ticket", "Corport ticket", "Total price", "Booking date", "Booking id", "Confirmed"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -228,9 +228,7 @@ public class ViewBookings extends javax.swing.JFrame {
                                     "INNER JOIN events ON bookings.performanceEvent = events.id " +
                                     "INNER JOIN users ON bookings.user = users.id WHERE users.user_name = ?";
         if(userName.equals("admin")){
-            retrievBookingsData = "SELECT users.user_name, events.title, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date FROM bookings " +
-                                    "INNER JOIN events ON bookings.performanceEvent = events.id " +
-                                    "INNER JOIN users ON bookings.user = users.id";
+            retrievBookingsData = "SELECT bookings.id, users.user_name, events.title, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date, bookings.confirmed FROM bookings INNER JOIN events ON bookings.performanceEvent = events.id INNER JOIN users ON bookings.user = users.id";
         }
         
                 
@@ -246,8 +244,8 @@ public class ViewBookings extends javax.swing.JFrame {
             
             Booking booking;
             while(result.next()){
-                booking = new Booking(result.getString("user_name"), result.getString("title"), result.getInt("number_of_class_1st_ticket"), result.getInt("number_of_class_2nd_ticket"),
-                        result.getInt("number_of_class_Org_ticket"), result.getDouble("total"), result.getString("booking_date"));
+                booking = new Booking(result.getInt("id"), result.getString("user_name"), result.getString("title"), result.getInt("number_of_class_1st_ticket"), result.getInt("number_of_class_2nd_ticket"), 
+                        result.getInt("number_of_class_Org_ticket"), result.getDouble("total"), result.getString("booking_date"),  result.getString("confirmed"));
                 bookingsList.add(booking);
             }
         }catch(Exception e){
@@ -261,7 +259,7 @@ public class ViewBookings extends javax.swing.JFrame {
     public void show_bookings(){
         ArrayList<Booking> bookList = bookingsList();
         DefaultTableModel model = (DefaultTableModel) bookingsTable.getModel();
-        Object[] row = new Object[7];
+        Object[] row = new Object[9];
         for(int i = 0; i< bookList.size(); i++){
             row[0] = bookList.get(i).getUserName();
             row[1] = bookList.get(i).getEventTitle();
@@ -270,6 +268,8 @@ public class ViewBookings extends javax.swing.JFrame {
             row[4] = bookList.get(i).getCorpTickets();
             row[5] = bookList.get(i).getTotal();
             row[6] = bookList.get(i).getBookingDate();
+            row[7] = bookList.get(i).getID();
+            row[8] = bookList.get(i).getConfirmed();
             model.addRow(row);
         }
         
