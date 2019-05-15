@@ -164,6 +164,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manage invoices", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/money-transfer.png"))); // NOI18N
 
@@ -297,6 +302,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         ConfirmPayment confPayment = new ConfirmPayment("admin");
         confPayment.setVisible(true);
     }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        GenerateInvoice generateInvoice = new GenerateInvoice();
+        generateInvoice.setVisible(true);
+        
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
      * @param args the command line arguments

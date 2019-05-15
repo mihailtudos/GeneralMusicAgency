@@ -1,4 +1,5 @@
 
+import com.sun.glass.events.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -214,6 +215,9 @@ public class CreateEvent extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 corporateTicketKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                corporateTicketKeyTyped(evt);
+            }
         });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -224,6 +228,9 @@ public class CreateEvent extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 secondClassTicketKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                secondClassTicketKeyTyped(evt);
+            }
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -233,6 +240,9 @@ public class CreateEvent extends javax.swing.JFrame {
         firstClassTicket.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 firstClassTicketKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                firstClassTicketKeyTyped(evt);
             }
         });
 
@@ -648,6 +658,31 @@ public class CreateEvent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void secondClassTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondClassTicketKeyTyped
+        char a = evt.getKeyChar();
+            if(!(Character.isDigit(a)) || (a == KeyEvent.VK_BACKSPACE) || (a == KeyEvent.VK_DELETE)){
+                evt.consume();
+
+            }        // TODO add your handling code here:
+    }//GEN-LAST:event_secondClassTicketKeyTyped
+
+    private void firstClassTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstClassTicketKeyTyped
+        char a = evt.getKeyChar();
+            if(!(Character.isDigit(a)) || (a == KeyEvent.VK_BACKSPACE) || (a == KeyEvent.VK_DELETE)){
+                evt.consume();
+
+            }        // TODO add your handling code here:
+    }//GEN-LAST:event_firstClassTicketKeyTyped
+
+    private void corporateTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corporateTicketKeyTyped
+        // TODO add your handling code here:
+        char a = evt.getKeyChar();
+            if(!(Character.isDigit(a)) || (a == KeyEvent.VK_BACKSPACE) || (a == KeyEvent.VK_DELETE)){
+                evt.consume();
+
+            }
+    }//GEN-LAST:event_corporateTicketKeyTyped
 
     /**
      * @param args the command line arguments
