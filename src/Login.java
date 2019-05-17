@@ -30,7 +30,7 @@ PreparedStatement prepStatement;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        login = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         registration = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
@@ -43,10 +43,10 @@ PreparedStatement prepStatement;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 36))); // NOI18N
 
-        jButton1.setText("Sign in");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        login.setText("Sign in");
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
 
@@ -70,6 +70,12 @@ PreparedStatement prepStatement;
             }
         });
 
+        user_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_nameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,7 +89,7 @@ PreparedStatement prepStatement;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(registration, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -114,7 +120,7 @@ PreparedStatement prepStatement;
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registration)
-                    .addComponent(jButton1))
+                    .addComponent(login))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap())
@@ -154,12 +160,13 @@ PreparedStatement prepStatement;
         sign_up.setVisible(true);
     }//GEN-LAST:event_registrationActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
         
         String sql = "SELECT * FROM users WHERE user_name=? AND password=?";
         String userName = user_name.getText();
         try{
+            //prepared statement 
             prepStatement = connection.prepareStatement(sql);
             prepStatement.setString(1, userName);
             String passText = new String(password.getPassword());
@@ -187,7 +194,11 @@ PreparedStatement prepStatement;
                 JOptionPane.showMessageDialog(null, e);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_loginActionPerformed
+
+    private void user_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,12 +237,12 @@ PreparedStatement prepStatement;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton registration;
     private javax.swing.JTextField user_name;

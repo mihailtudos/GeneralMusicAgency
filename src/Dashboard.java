@@ -4,16 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mihai
- */
+//global variable declaration
 public class Dashboard extends javax.swing.JFrame {
     String userName;
     Connection connection  = DB_Connection.get_connection();;
@@ -22,7 +13,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     
    
-    
+    //initiates the form with one parameter
    public Dashboard(String userName){
         super("Dashboard");
         this.userName = userName;
@@ -30,13 +21,15 @@ public class Dashboard extends javax.swing.JFrame {
         getUserStatus();
         welcome.setText("Welcome " + userName + "!!!" );
     }
-    
+   
+   //initiates the form as default 
      public Dashboard() {
         super("Dashboard");
         initComponents();
         getUserStatus();
     }
      
+     //gets user level from database to decide what to display 
      public void getUserStatus(){
         String getUserLevelSLQ = "SELECT users.user_level FROM users WHERE users.user_name = ?";
         String user_level="";
@@ -392,12 +385,13 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //exit menubar option 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
-    
+        //logout menubar option 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -405,6 +399,7 @@ public class Dashboard extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    //opens the profile if the button clicked
     private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -412,6 +407,7 @@ public class Dashboard extends javax.swing.JFrame {
         profile.setVisible(true);
     }//GEN-LAST:event_viewProfileActionPerformed
 
+    //opens the available events form if the button was clicked
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
         setVisible(false);
@@ -419,13 +415,15 @@ public class Dashboard extends javax.swing.JFrame {
         availableEvents.setVisible(true);
     }//GEN-LAST:event_jPanel5MouseClicked
 
+    //opens the booking form if the button was clicked
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
         setVisible(false);
         Bookings booking = new Bookings(userName);
         booking.setVisible(true);
     }//GEN-LAST:event_jPanel7MouseClicked
-
+    
+    //opens the form to view the bookings if the button was clicked
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         // TODO add your handling code here:
         setVisible(false);

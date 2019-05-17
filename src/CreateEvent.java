@@ -11,16 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mihai
- */
+//global variables
 public class CreateEvent extends javax.swing.JFrame {
     String userName;
     Connection connection;
@@ -29,6 +21,7 @@ public class CreateEvent extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+   //calles the method to initiate the form with one parameter 
    public CreateEvent(String userName){
         super("Dashboard");
         this.userName = userName;
@@ -39,6 +32,7 @@ public class CreateEvent extends javax.swing.JFrame {
         fillPerfomances();
     }
     
+   //initiates the form as default defined
     public CreateEvent() {
         initComponents();
         connection = DB_Connection.get_connection();
@@ -47,6 +41,7 @@ public class CreateEvent extends javax.swing.JFrame {
         fillPerfomances();
     }
 
+    //retrieves the performances from db and stores the performances in a combobox
     private void fillEvents(){
         String getEventsSQL = "SELECT performances.id, events.title, performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
@@ -63,6 +58,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }
     }
     
+        //retrieves the performance title from db and stores the performances in the combobox
     private void fillPerfomances(){
         String getEventsSQL = "SELECT id, title FROM events";
         try{
@@ -78,6 +74,7 @@ public class CreateEvent extends javax.swing.JFrame {
     
     
     
+        //retrieves the bands from db and stores the performances in a combobox
         private void fillBands(){
         String getBandsSQL = "SELECT id, name FROM bands";
         try{
@@ -528,11 +525,13 @@ public class CreateEvent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
+    //exit menubar option     
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
+
+        //logout menubar option     
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
@@ -541,6 +540,7 @@ public class CreateEvent extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    //adds new performance into database
     private void addBandToEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBandToEventActionPerformed
         String addDetailsToEventSQL = "INSERT INTO `performances` (`event`, `date`, `first_class_ticket_price`, `second_class_ticket_price`, `corporate_ticket_price`) VALUES(?,?,?,?,?)";
         try{
@@ -568,6 +568,7 @@ public class CreateEvent extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addBandToEventActionPerformed
 
+    //go back action performed when button is clicked
     private void backToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToDashboardActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -575,6 +576,7 @@ public class CreateEvent extends javax.swing.JFrame {
         organiserDashboard.setVisible(true);
     }//GEN-LAST:event_backToDashboardActionPerformed
 
+        //adds new event into database
     private void createEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventActionPerformed
         // TODO add your handling code here:
         String addEventSQL = "INSERT INTO `events` (`title`, `full_description`, `venue`) VALUES (?,?,?)";
@@ -606,6 +608,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createEventActionPerformed
 
+    //restricts the input to numbers
     private void corporateTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corporateTicketKeyPressed
         // TODO add your handling code here:
         try {
@@ -615,7 +618,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_corporateTicketKeyPressed
-
+    //restricts the input to numbers
     private void secondClassTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondClassTicketKeyPressed
         // TODO add your handling code here:
         try {
@@ -624,7 +627,7 @@ public class CreateEvent extends javax.swing.JFrame {
             secondClassTicket.setText("");
         }
     }//GEN-LAST:event_secondClassTicketKeyPressed
-
+    //restricts the input to numbers
     private void firstClassTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstClassTicketKeyPressed
         // TODO add your handling code here:
         try {
@@ -638,6 +641,7 @@ public class CreateEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+    //inserts new band record into database
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String insertBandToEventSQL = "INSERT INTO `festival_members` (`performance`, `band`) VALUES (?,?);";
@@ -659,6 +663,7 @@ public class CreateEvent extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+        //restricts the input to numbers
     private void secondClassTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondClassTicketKeyTyped
         char a = evt.getKeyChar();
             if(!(Character.isDigit(a)) || (a == KeyEvent.VK_BACKSPACE) || (a == KeyEvent.VK_DELETE)){
@@ -667,6 +672,7 @@ public class CreateEvent extends javax.swing.JFrame {
             }        // TODO add your handling code here:
     }//GEN-LAST:event_secondClassTicketKeyTyped
 
+        //restricts the input to numbers
     private void firstClassTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstClassTicketKeyTyped
         char a = evt.getKeyChar();
             if(!(Character.isDigit(a)) || (a == KeyEvent.VK_BACKSPACE) || (a == KeyEvent.VK_DELETE)){
@@ -674,6 +680,8 @@ public class CreateEvent extends javax.swing.JFrame {
 
             }        // TODO add your handling code here:
     }//GEN-LAST:event_firstClassTicketKeyTyped
+
+        //restricts the input to numbers
 
     private void corporateTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corporateTicketKeyTyped
         // TODO add your handling code here:

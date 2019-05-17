@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mihai
- */
 public class AdminDashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashboard
      */
+    
     public AdminDashboard() {
         initComponents();
     }
@@ -272,11 +264,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
+        //exit menu bar option 
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
+        //sign out option from menubar
         setVisible(false);
         Login login = new Login();
         login.setVisible(true);
@@ -284,6 +278,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
+        //opens form for available events
         this.setVisible(false);
         AvailableEvents availableEvents = new AvailableEvents();
         availableEvents.setVisible(true);
@@ -291,6 +286,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         // TODO add your handling code here:
+        //opens the form for view all bookings 
         this.setVisible(false);
         ViewBookings viewBookings = new ViewBookings("admin");
         viewBookings.setVisible(true);
@@ -298,6 +294,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
+        //opens the form for payment confirmation
         this.setVisible(false);
         ConfirmPayment confPayment = new ConfirmPayment("admin");
         confPayment.setVisible(true);
@@ -305,6 +302,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
+        //opens the form for generating invoices 
         this.setVisible(false);
         GenerateInvoice generateInvoice = new GenerateInvoice();
         generateInvoice.setVisible(true);

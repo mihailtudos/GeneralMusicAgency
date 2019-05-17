@@ -6,16 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mihai
- */
 public class AvailableEvents extends javax.swing.JFrame {
     String userName = "";
     Connection connection;
@@ -24,7 +15,7 @@ public class AvailableEvents extends javax.swing.JFrame {
     
     
    
-    
+    //mothod overwrite that uses one parameter to initiate the form with
    public AvailableEvents(String userName){
         super("Available Events");
         this.userName = userName;
@@ -33,7 +24,7 @@ public class AvailableEvents extends javax.swing.JFrame {
         fillEvents();
         eventDetails.setVisible(false);
     }
-    
+    //method that initiates the form
      public AvailableEvents() {
         super("Available Events"); 
         connection = DB_Connection.get_connection();
@@ -41,7 +32,7 @@ public class AvailableEvents extends javax.swing.JFrame {
         fillEvents();
         eventDetails.setVisible(false);
     }
-     
+     //gets the available performances and dispays them in a combobox from where the user can make his selection
      private void fillEvents(){
         String getEventsSQL = "SELECT performances.id, events.title, performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
@@ -386,16 +377,17 @@ public class AvailableEvents extends javax.swing.JFrame {
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
+        //exit option from menubar
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
-
+    //logaut option form menu bar
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         Login login = new Login();
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
-
+    //method that fills the form with selected event details 
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
         String eventDetailsSQL = "SELECT events.title, events.full_description, events.venue, performances.date, performances.first_class_ticket_price, performances.second_class_ticket_price,"
@@ -422,7 +414,7 @@ public class AvailableEvents extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_SelectActionPerformed
-
+    //gets the bands performing during the event and dispays their name on the form
     public void setBands(){
         String getBands = "SELECT bands.name FROM festival_members INNER JOIN bands ON festival_members.band = bands.id WHERE festival_members.performance = ?";
         try{
@@ -438,6 +430,7 @@ public class AvailableEvents extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    //back button that will move the flow back to the dashboard according to the user who pressed the button
     private void backToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToDashboardActionPerformed
         // TODO add your handling code here:
         if(userName.equals("")){
@@ -451,9 +444,10 @@ public class AvailableEvents extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_backToDashboardActionPerformed
-
+    //method that moves the flow to the booking form when book event button is pressed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         setVisible(false);
         Bookings booking = new Bookings(userName,  eventToLookAt.getSelectedItem().toString().substring(0, 2));
         booking.setVisible(true);

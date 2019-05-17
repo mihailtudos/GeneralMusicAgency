@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mihai
- */
+//variable declaration 
 class Booking {
     private String userName, eventTitle, bookingDate, confirmed;
     private int firstClassTickets, secondClassTickets, corpTickets, id;
     double total;
     
-    //booking constructor
+    //booking object constructor
     public Booking(String userName, String eventTitle,int firstClassTickets, int secondClassTickets, int corpTickets, double total, String bookingDate){
         this.userName = userName;
         this.eventTitle = eventTitle;
@@ -23,7 +15,7 @@ class Booking {
         this.total = total;
         this.bookingDate = bookingDate;
     }
-    
+    //overwriten construtor that uses more parameters (used for booking confirmation)
     public Booking(int id, String userName, String eventTitle,int firstClassTickets, int secondClassTickets, int corpTickets, double total, String bookingDate, String confirmed){
         this.id = id;
         this.userName = userName;
@@ -35,7 +27,8 @@ class Booking {
         this.bookingDate = bookingDate;
         this.confirmed = confirmed;
     }
-
+    
+    //getters to build the constructor
     public int getID(){
         return id;
     }

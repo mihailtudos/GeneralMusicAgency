@@ -9,24 +9,14 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mihai
- */
+//global variables
 public class EditEvent extends javax.swing.JFrame {
     String userName;
     Connection connection;
     ResultSet result;
     PreparedStatement featchEvents, featchEventDetails, addEvent, featchPerformanceDetails;
-    /**
-     * Creates new form Dashboard
-     */
+    
+   //initiates the form with and parameter 
    public EditEvent(String userName){
         super("Edit Event");
         this.userName = userName;
@@ -36,7 +26,7 @@ public class EditEvent extends javax.swing.JFrame {
         fillEvents();
         //fillPerformance();
     }
-    
+    //initiates the form as default constrution
     public EditEvent() {
         super("Edit Event");
         initComponents();
@@ -46,6 +36,7 @@ public class EditEvent extends javax.swing.JFrame {
         //fillPerformance();
     }
 
+    //filles with events title a combobox that user can use to select an event to edit
     private void fillEvents(){
         String getEventsSQL = "SELECT DISTINCT events.title FROM events";
         try{
@@ -62,6 +53,7 @@ public class EditEvent extends javax.swing.JFrame {
         }
     }
     
+    //get the performances and display them in a combobox
     public void fillPerformance(){
         performance.removeAllItems();
          String getEventsSQL = "SELECT DISTINCT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
@@ -79,6 +71,7 @@ public class EditEvent extends javax.swing.JFrame {
         }
     }
     
+    //fill the events date in a combobox
     public void fillEventDates(){
         performanceDate.removeAllItems();
         String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date >?";
@@ -636,18 +629,20 @@ public class EditEvent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //exit menu otion
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
+    //logout menu otion
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         Login login = new Login();
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
-
+    //go back to the dashboard
     private void backToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToDashboardActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -655,6 +650,7 @@ public class EditEvent extends javax.swing.JFrame {
         organiserDashboard.setVisible(true);
     }//GEN-LAST:event_backToDashboardActionPerformed
 
+    //will select and dispaly  event details to be edited 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
         String getEventDetails = "SELECT events.id, events.title, events.full_description, events.venue FROM events WHERE events.title = ?";

@@ -6,16 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mihai
- */
+//global variables declaration
 public class ConfirmPayment extends javax.swing.JFrame {
     String userName;
     Connection connection;
@@ -24,7 +15,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
     
     
    
-    
+    //initiates the form with one parameter 
    public ConfirmPayment(String userName){
         super("View Bookings");
         this.userName = userName;
@@ -32,7 +23,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
         connection = DB_Connection.get_connection();
         show_bookings();
     }
-    
+    //default methot to initiate the form 
      public ConfirmPayment() {
         super("View Bookings");
         initComponents();
@@ -252,12 +243,12 @@ public class ConfirmPayment extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(950, 807));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    //exit menubar option
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
-
+    //logout menubar option
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -265,6 +256,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    //back to the dashboard the user comes from 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         if(userName.equals("admin")){
@@ -279,6 +271,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonActionPerformed
 
+    //selects the record data user has selected from the booking table displaied on the form 
     private void bookingsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingsTableMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model =(DefaultTableModel) bookingsTable.getModel();
@@ -297,6 +290,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bookingsTableMouseClicked
 
+    //will update selected booking as confirmed if not confirmed yet
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         String confirmPaymentSQL = "UPDATE `bookings` SET `confirmed` = ? WHERE `bookings`.`id` = ?;";
@@ -317,6 +311,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    //method that stores booking as an object and dispalys it into the booking table on the form
     public ArrayList<Booking>bookingsList() {
         ArrayList<Booking>bookingsList = new ArrayList<>();
         String retrievBookingsData = "SELECT bookings.id, events.title, users.user_name, bookings.number_of_class_1st_ticket, bookings.number_of_class_2nd_ticket, bookings.number_of_class_Org_ticket, bookings.total, bookings.booking_date, bookings.confirmed\n" +
@@ -356,7 +351,7 @@ public class ConfirmPayment extends javax.swing.JFrame {
     }
     
     
-    
+    //method to dispaly the booking objects in the bookings table on the form
     public void show_bookings(){
         ArrayList<Booking> bookList = bookingsList();
         DefaultTableModel model = (DefaultTableModel) bookingsTable.getModel();

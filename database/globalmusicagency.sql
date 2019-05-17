@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2019 at 09:34 PM
+-- Generation Time: May 17, 2019 at 09:28 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -219,14 +219,16 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `title`, `first_name`, `second_name`, `address_1`, `address_2`, `town`, `post_code`, `email`, `phone_no`, `user_name`, `password`, `security_code`, `org_type`, `account_no`, `account_postcode`, `org_name`, `user_level`) VALUES
 (1, 'Mr.', 'Mihail', 'Tudos', '258 High St N', 'da', 'LU6 1BE', 'LU6 1BE', 'mihairmcr7@gmail.com', '07491648162', 'd1', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, NULL, NULL, NULL, NULL, 'user'),
 (5, 'Mr.', 'Mihail', 'Tudos', '31', '21', '13', '1111', '1', '1', 'd', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'user'),
-(6, 'Mr.', 'Mihail', 'Tudos', '346 Luton rd', '', 'LU54LG', 'LU6 1BE\r\n\r\n', 'mihairmcr7@gmail.com', '07492313213', 'organiser', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1234, NULL, NULL, NULL, NULL, 'organiser'),
+(6, 'Mr.', 'Mihail', 'Tudos', '346 Luton rd', '', 'LU54LG', 'LU6 1BE\r\n\r\n', 'mihaicr7@gmail.com', '07492313213', 'organiser', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1234, NULL, NULL, NULL, NULL, 'organiser'),
 (12, 'Mr.', '321', '321', '321', '31', '321', '321', '321', '321', '321', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 321, 'NULL', 'NULL', 'NULL', 'NULL', 'admin'),
-(31, 'Mr.', 'D', 'Dd', '31', '21', '13', '1111', '1', '1', 'admin', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'admin'),
-(32, 'Mr.', 'D', 'D', 'd', 'd', 'd', 'D', 'sada', 'd', 'das', '18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4', 1, 'NULL', 'NULL', 'NULL', 'NULL', 'admin'),
+(31, 'Mr.', 'D', 'Dd', '31', '21', '13', '1111', 'sdasd', '1', 'admin', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1551, 'part', 'NULL', 'NULL', 'NULL', 'admin'),
+(32, 'Mr.', 'D', 'D', 'd', 'd', 'd', 'D', 'sada', 'd', 'das', '1', 1, 'NULL', 'NULL', 'NULL', 'NULL', 'admin'),
 (33, 'Mr.', 'Sebastian', 'Smith', 'd', 'd', 'd', 'D', 'ddddd', 'd', 'org', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 1214, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation'),
-(34, 'Mr.', 'Mihail', 'Triboi', 'pacii 11 b', '', 'Nisporeni', 'LU51BF', '1', '0986786', '1', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation'),
+(34, 'Mr.', 'Mihail', 'Triboi', 'pacii 11 b', '', 'Nisporeni', 'LU51BF', '12311', '0986786', '1', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '9859352', 'LU41DD', 'Pacific', 'corporation'),
 (35, 'Mr.', 'Carolyn', 'Harris', '1808 ingram road ', '', 'Bennett', 'NC 27208', 'carolyntharris@rhyta.com ', '336-581-4008', 'carol_harr', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'NULL', 'NULL', 'NULL', 'NULL', 'user'),
-(36, 'Mr.', 'Josh', 'Odenis', '64 long street ', '', 'MILLCOMBE', 'TQ9 9GZ', 'joshuaodonnell@teleworm.us ', '077 6446 0951 ', 'joshua_od', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '668703', 'TQ9 9GZ', 'ModelingSecrets', 'corporation');
+(36, 'Mr.', 'Josh', 'Odenis', '64 long street ', '', 'MILLCOMBE', 'TQ9 9GZ', 'joshuaodonnell@teleworm.us ', '077 6446 0951 ', 'joshua_od', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'Partnership', '668703', 'TQ9 9GZ', 'ModelingSecrets', 'corporation'),
+(37, 'Mr.', 'Cosmin', 'Costin', '245 luton road', '', 'Luton', 'LU711F', 'cosmicostin@gmail.com', '0859868592', 'ccosmin', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 5896, 'NULL', 'NULL', 'NULL', 'NULL', 'user'),
+(38, 'Mr.', 'Dh', 'Hjhh', 'hhhgvb', '', 'hghgb', 'BBHH', 'h@da', '63', 'fas', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 739427, 'Limited/PLC.', '84278', 'd,saj', '4832', 'corporation');
 
 --
 -- Indexes for dumped tables
@@ -281,7 +283,8 @@ ALTER TABLE `performances`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_name` (`user_name`);
+  ADD UNIQUE KEY `user_name` (`user_name`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -327,7 +330,7 @@ ALTER TABLE `performances`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables

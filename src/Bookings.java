@@ -7,16 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mihai
- */
+//global variable declaration 
 public class Bookings extends javax.swing.JFrame {
     String userName, eventID, userID;
     Connection connection;
@@ -26,7 +18,7 @@ public class Bookings extends javax.swing.JFrame {
     
     
    
-    
+   //overwrite method that uses one parameter to initiate the form 
    public Bookings(String userName){
         super("Booking");
         this.userName = userName;
@@ -35,7 +27,7 @@ public class Bookings extends javax.swing.JFrame {
         fillEvents();
         eventDetails.setVisible(false);
     }
-   
+   //overwrite method that initiate the form using two parameters
     public Bookings(String userName, String eventID){
         super("Booking");
         this.userName = userName;
@@ -45,7 +37,7 @@ public class Bookings extends javax.swing.JFrame {
         fillEvents();
         eventDetails.setVisible(false);
     }
-    
+    //initiate the form without any parameter (default)
      public Bookings() {
         super("Booking"); 
         connection = DB_Connection.get_connection();
@@ -54,6 +46,7 @@ public class Bookings extends javax.swing.JFrame {
         eventDetails.setVisible(false);
     }
      
+     //retrives all feature events and fills the combobox with the available events 
      private void fillEvents(){
         String getEventsSQL = "SELECT DISTINCT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
@@ -71,6 +64,7 @@ public class Bookings extends javax.swing.JFrame {
         }
     }
      
+    //gets the events dates used by the user to book an event on a specific date
     private void fillEventDates(){
         
         String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date >?";
@@ -525,11 +519,13 @@ public class Bookings extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //exit option on the menubar
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
+    //logout option on menubar
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -537,6 +533,7 @@ public class Bookings extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    //fills the form with selected event details 
     private void SelectDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectDateActionPerformed
         // TODO add your handling code here:
         String eventDetailsSQL = "SELECT performances.id, events.title, events.full_description, events.venue, performances.date, performances.first_class_ticket_price, performances.second_class_ticket_price,"
@@ -568,6 +565,7 @@ public class Bookings extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SelectDateActionPerformed
 
+    //fills the bands that performs in the event 
     public void setBands(){
         String getBands = "SELECT bands.name FROM festival_members INNER JOIN bands ON festival_members.band = bands.id WHERE festival_members.performance = ?";
         try{
@@ -584,6 +582,7 @@ public class Bookings extends javax.swing.JFrame {
         }
     }
     
+    //checks if user is a corporation or normal user and gets the user id for further booking
     public boolean checkUserLevel(String userName){
         String getUserLevelSLQ = "SELECT users.id, users.user_level FROM users WHERE users.user_name = ?";
         String user_level="";
@@ -609,11 +608,13 @@ public class Bookings extends javax.swing.JFrame {
         backToDashboard();
     }//GEN-LAST:event_backToDashboardActionPerformed
 
+    //back to dashboard button action perform
     public void backToDashboard(){
         this.setVisible(false);
         Dashboard dashboard = new Dashboard(userName);
         dashboard.setVisible(true);
     }
+    //creates new booking record into database 
     private void createBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBookingActionPerformed
         // TODO add your handling code here:
         String createBookingSQL = "INSERT INTO `bookings` ( `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) "
@@ -645,7 +646,7 @@ public class Bookings extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_createBookingActionPerformed
-
+    //displays the corporate price if user is corporation
     private void selectEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEventActionPerformed
         // TODO add your handling code here:
         labelForCorpPrice.setVisible(checkUserLevel(userName));
@@ -659,6 +660,7 @@ public class Bookings extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_secondClassTicketNumbersActionPerformed
 
+    //restricts the input to number only
     private void firstClassTicketsNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstClassTicketsNumberKeyTyped
         // TODO add your handling code here:
         char a = evt.getKeyChar();
@@ -668,6 +670,7 @@ public class Bookings extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_firstClassTicketsNumberKeyTyped
 
+    //restricts the input to number only
     private void secondClassTicketNumbersKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondClassTicketNumbersKeyTyped
         // TODO add your handling code here:
         char a = evt.getKeyChar();
@@ -676,6 +679,7 @@ public class Bookings extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_secondClassTicketNumbersKeyTyped
 
+    //restricts the input to number only
     private void orgTicketNumbersKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orgTicketNumbersKeyTyped
         // TODO add your handling code here:
         char a = evt.getKeyChar();
@@ -695,16 +699,17 @@ public class Bookings extends javax.swing.JFrame {
         calculateTotalPrice();
     }//GEN-LAST:event_firstClassTicketsNumberKeyReleased
 
+    //callz the method that calculates the price for selected tickets 
     private void secondClassTicketNumbersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondClassTicketNumbersKeyReleased
         // TODO add your handling code here:
         calculateTotalPrice();
     }//GEN-LAST:event_secondClassTicketNumbersKeyReleased
-
+    //callz the method that calculates the price for selected tickets 
     private void orgTicketNumbersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orgTicketNumbersKeyReleased
         // TODO add your handling code here:
         calculateTotalPrice();
     }//GEN-LAST:event_orgTicketNumbersKeyReleased
-
+//method that calculates the total price for selected number of tickets
     public void calculateTotalPrice(){
         totalPriceCalculated.setText("£0");
         double totalPrice =0d;

@@ -6,16 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mihai
- */
+//global variable declaration 
 public class CancelEvent extends javax.swing.JFrame {
     String userName, selectedEventID;
     Connection connection;
@@ -24,6 +15,7 @@ public class CancelEvent extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    //initiates the form with one parameter, method overwrite
    public CancelEvent(String userName){
         super("Edit Event");
         this.userName = userName;
@@ -33,6 +25,7 @@ public class CancelEvent extends javax.swing.JFrame {
         fillEvents();
     }
     
+   //default methot do initiate the form
     public CancelEvent() {
         super("Edit Event");
         initComponents();
@@ -41,7 +34,7 @@ public class CancelEvent extends javax.swing.JFrame {
         fillEvents();
     }
     
-    
+    //gets all existing events and places them into a combobox
     private void fillEvents(){
         String getEventsSQL = "SELECT events.title FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date >?";
         try{
@@ -58,6 +51,8 @@ public class CancelEvent extends javax.swing.JFrame {
         }
     }
     
+        //gets all existing date of events and places them into a combobox
+
     private void fillEventDates(){
         
         String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date >?";
@@ -349,11 +344,13 @@ public class CancelEvent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //exit option on the menubar
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
+    //logout option on the menubar
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -361,6 +358,7 @@ public class CancelEvent extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    //back bautton action 
     private void backToOrgansierDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToOrgansierDashboardActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -368,6 +366,7 @@ public class CancelEvent extends javax.swing.JFrame {
         organiserDashboard.setVisible(true);
     }//GEN-LAST:event_backToOrgansierDashboardActionPerformed
 
+    //method that will delete the performance from database 
     private void cancelEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEventActionPerformed
         // TODO add your handling code here:
         String cancelEventSQL = "DELETE performances FROM performances INNER JOIN events ON performances.event=events.id WHERE events.title = ? AND performances.date =?";
@@ -390,6 +389,7 @@ public class CancelEvent extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelEventActionPerformed
 
+    //method that selects the option chosen by the user to be deleted and stores the id of the performance 
     private void selectEventDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEventDateActionPerformed
         // TODO add your handling code here:
         String selectEventToBeCanceledSQL = "SELECT performances.id, events.title, performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date =?";
@@ -409,6 +409,7 @@ public class CancelEvent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectEventDateActionPerformed
 
+    //when the button search is pressed the method will be called
     private void searchDatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDatesActionPerformed
         // TODO add your handling code here:
         selectedEventDate.removeAllItems();

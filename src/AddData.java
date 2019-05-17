@@ -7,17 +7,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mihai
- */
+//class starts
 public class AddData extends javax.swing.JFrame {
+    //global variables declaration
     String userName;
     Connection connection;
     ResultSet result;
@@ -25,21 +17,24 @@ public class AddData extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    //method overwrite that uses userName as variable 
    public AddData(String userName){
         super("Dashboard");
         this.userName = userName;
         initComponents();
         connection = DB_Connection.get_connection();
+        //calles the methond 
         fetchAgent();
 
     }
-    
+    //method to initiate the components
     public AddData() {
         initComponents();
         connection = DB_Connection.get_connection();
         fetchAgent();
     }
 
+    //method that retrieves all agents from database and adds them into the combobox, which would be used by the user to select an agent 
     private void fetchAgent(){
         String fetchAgentSQL = "SELECT id, CONCAT(first_name, ' ', second_name) AS agentName FROM agents";
         try{
@@ -517,11 +512,13 @@ public class AddData extends javax.swing.JFrame {
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
+        // exit option from the menubar
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
+        //logout oton from menu bar
         setVisible(false);
         Login login = new Login();
         login.setVisible(true);
@@ -533,7 +530,7 @@ public class AddData extends javax.swing.JFrame {
 
     private void backToOrgDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToOrgDashboardActionPerformed
         // TODO add your handling code here:
-        
+        //back to organiser dashboard action when button back is clicked 
         setVisible(false);
         OrganiserDashboard organiserDashboard = new OrganiserDashboard(this.userName);
         organiserDashboard.setVisible(true);
@@ -541,6 +538,7 @@ public class AddData extends javax.swing.JFrame {
 
     private void addAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAgentActionPerformed
         // TODO add your handling code here:
+        //adds new agent into the database according to the form filled 
         String addAgentSQL = "INSERT INTO `agents` (`first_name`, `second_name`, `phone_no`, `email`, `address`, `post_code`, `date_of_birth`) VALUES (?,?,?,?,?,?,?);";
         try{
             prepStatementForAgent = connection.prepareCall(addAgentSQL);
@@ -572,6 +570,7 @@ public class AddData extends javax.swing.JFrame {
 
     private void addBandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBandActionPerformed
         // TODO add your handling code here:
+        //method that inserts a new band into database according to the filled form and also pickes and agent existing in database 
         String addBandSQL =  "INSERT INTO `bands` (`name`, `bio`, `town`, `facebook`, `instagram`, `website`, `agent`) VALUES (?,?,?,?,?,?,?);";
         try{
             prepStatementForBand = connection.prepareStatement(addBandSQL);
