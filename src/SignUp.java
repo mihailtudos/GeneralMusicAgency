@@ -549,7 +549,8 @@ PreparedStatement prepStatement;
         // TODO add your handling code here:
         try{
             if(account_no.getText().isEmpty() && org_name.getText().isEmpty() && org_name.getText().isEmpty()){
-                String sql = "INSERT INTO `users` (`title`, `first_name`, `second_name`, `address_1`, `address_2`, `town`, `post_code`, `email`, `phone_no`, `user_name`, `password`, `security_code`, `org_type`, `account_no`, `account_postcode`, `org_name`)"
+                String sql = "INSERT INTO `users` (`title`, `first_name`, `second_name`, `address_1`, `address_2`, `town`, `post_code`, "
+                        + "`email`, `phone_no`, `user_name`, `password`, `security_code`, `org_type`, `account_no`, `account_postcode`, `org_name`)"
                         + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                 prepStatement = connection.prepareStatement(sql);
                 prepStatement.setString(1, (String) title.getSelectedItem());   

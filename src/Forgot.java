@@ -275,7 +275,6 @@ PreparedStatement prepStatement;
                             JOptionPane.showMessageDialog(null, "User Not Found. Try again!");
                         }
                     }
-                    
                     prepStatement.setString(1, user_name.getText());
                     prepStatement.setString(2, email.getText()); 
                 }catch(Exception e){

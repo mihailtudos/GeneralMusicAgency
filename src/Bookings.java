@@ -67,8 +67,10 @@ public class Bookings extends javax.swing.JFrame {
     //gets the events dates used by the user to book an event on a specific date
     private void fillEventDates(){
         
-        String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events On performances.event = events.id WHERE events.title =? AND performances.date >?";
+        String getEventsSQL = "SELECT performances.date FROM performances INNER JOIN events"
+                + " On performances.event = events.id WHERE events.title =? AND performances.date >?";
         try{
+            selectedEventDate.removeAllItems();
             featchEvents = connection.prepareStatement(getEventsSQL);
             featchEvents.setString(1, eventToLookAt.getSelectedItem().toString());
             Date date = new Date();
@@ -177,6 +179,11 @@ public class Bookings extends javax.swing.JFrame {
         jLabel5.setText("Select event");
 
         eventToLookAt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        eventToLookAt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventToLookAtActionPerformed(evt);
+            }
+        });
 
         SelectDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SelectDate.setText("Select");
@@ -536,8 +543,10 @@ public class Bookings extends javax.swing.JFrame {
     //fills the form with selected event details 
     private void SelectDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectDateActionPerformed
         // TODO add your handling code here:
-        String eventDetailsSQL = "SELECT performances.id, events.title, events.full_description, events.venue, performances.date, performances.first_class_ticket_price, performances.second_class_ticket_price,"
-                + " performances.corporate_ticket_price FROM performances INNER JOIN events On performances.event = events.id WHERE performances.date = ? and events.title=?";
+        String eventDetailsSQL = "SELECT performances.id, events.title, events.full_description, events.venue, "
+                + "performances.date, performances.first_class_ticket_price, performances.second_class_ticket_price,"
+                + " performances.corporate_ticket_price FROM performances INNER JOIN events On "
+                + "performances.event = events.id WHERE performances.date = ? and events.title=?";
         description.setText("");
         try{
             featchEventDetails = connection.prepareStatement(eventDetailsSQL);
@@ -567,7 +576,8 @@ public class Bookings extends javax.swing.JFrame {
 
     //fills the bands that performs in the event 
     public void setBands(){
-        String getBands = "SELECT bands.name FROM festival_members INNER JOIN bands ON festival_members.band = bands.id WHERE festival_members.performance = ?";
+        String getBands = "SELECT bands.name FROM festival_members INNER JOIN bands "
+                + "ON festival_members.band = bands.id WHERE festival_members.performance = ?";
         try{
             featchEventBands = connection.prepareStatement(getBands);
             featchEventBands.setString(1, performanceID.getText());
@@ -617,7 +627,8 @@ public class Bookings extends javax.swing.JFrame {
     //creates new booking record into database 
     private void createBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBookingActionPerformed
         // TODO add your handling code here:
-        String createBookingSQL = "INSERT INTO `bookings` ( `user`, `performanceEvent`, `number_of_class_1st_ticket`, `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) "
+        String createBookingSQL = "INSERT INTO `bookings` ( `user`, `performanceEvent`, `number_of_class_1st_ticket`,"
+                + " `number_of_class_2nd_ticket`, `number_of_class_Org_ticket`, `total`, `booking_date`) "
                 + "VALUES (?,?,?,?,?,?,?);";
         try{
             insertBooking = connection.prepareStatement(createBookingSQL);
@@ -709,6 +720,10 @@ public class Bookings extends javax.swing.JFrame {
         // TODO add your handling code here:
         calculateTotalPrice();
     }//GEN-LAST:event_orgTicketNumbersKeyReleased
+
+    private void eventToLookAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventToLookAtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventToLookAtActionPerformed
 //method that calculates the total price for selected number of tickets
     public void calculateTotalPrice(){
         totalPriceCalculated.setText("£0");
